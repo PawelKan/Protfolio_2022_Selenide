@@ -10,7 +10,7 @@ import utils.Users;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class Functionl_LoginIntoPage extends TestBase {
+public class Functional_LoginIntoPage extends TestBase {
 
     HomePageObj homePage = new HomePageObj();
     LoginPageObj loginPage = new LoginPageObj();

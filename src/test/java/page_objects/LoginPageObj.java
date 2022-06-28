@@ -1,19 +1,36 @@
 package page_objects;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPageObj {
+    @Getter
+    public SelenideElement headerAuthentication = $(".page-heading");
 
-    String headerAuthentication = ".page-heading";
-    String txtEmailAddressLogin = "#email";
-    String txtPasswordLogin = "#passwd";
-    String btnLoginSubmit = "#SubmitLogin";
+    @Getter
+    public SelenideElement txtEmailAddressLogin = $("#email");
 
-    public SelenideElement headerAuthentication(){ return $(headerAuthentication);    }
-    public SelenideElement txtEmailAddressLogin(){ return $(txtEmailAddressLogin);    }
-    public SelenideElement txtPasswordLogin(){ return $(txtPasswordLogin);    }
+    @Getter
+    public SelenideElement txtPasswordLogin = $("#passwd");
 
-    public SelenideElement btnLoginSubmit() { return $(btnLoginSubmit);    }
+    @Getter
+    public SelenideElement btnLoginSubmit = $("#SubmitLogin");
+
+    @Getter
+    public SelenideElement errorMessage = $("#center_column > div.alert.alert-danger");
+
+    public void checkAlertMessageThereIsOneError(){
+        getErrorMessage().should(Condition.text("There is 1 error"));
+    }
+
+    public void loginIntoAppWithUserParameters(String userName, String userPassword){
+        getTxtEmailAddressLogin().clear();
+        getTxtEmailAddressLogin().sendKeys(userName);
+
+        getTxtPasswordLogin().clear();
+        getTxtPasswordLogin().sendKeys(userPassword);
+    }
 }

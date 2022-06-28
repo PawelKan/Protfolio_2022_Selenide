@@ -10,7 +10,7 @@ import utils.Users;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class Functional_LoginIntoPage extends TestBase {
+public class Functional_LoginIntoAppTests extends TestBase {
 
     HomePageObj homePage = new HomePageObj();
     LoginPageObj loginPage = new LoginPageObj();
@@ -21,8 +21,8 @@ public class Functional_LoginIntoPage extends TestBase {
         open("/index.php?controller=authentication&back=my-account");
         homePage.getBtnSignIn().click();
 
-        loginPage.headerAuthentication().shouldHave(Condition.text("Authentication"));
-        loginPage.btnLoginSubmit().click();
+        loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
+        loginPage.getBtnLoginSubmit().click();
         loginPage.checkAlertMessageThereIsOneError();
     }
 
@@ -31,10 +31,10 @@ public class Functional_LoginIntoPage extends TestBase {
         open("/index.php?controller=authentication&back=my-account");
         homePage.getBtnSignIn().click();
 
-        loginPage.headerAuthentication().shouldHave(Condition.text("Authentication"));
+        loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
         loginPage.loginIntoAppWithUserParameters("InvalidUser1234", Users.userPass);
 
-        loginPage.btnLoginSubmit().click();
+        loginPage.getBtnLoginSubmit().click();
 
         loginPage.checkAlertMessageThereIsOneError();
     }
@@ -44,10 +44,10 @@ public class Functional_LoginIntoPage extends TestBase {
         open("/index.php?controller=authentication&back=my-account");
         homePage.getBtnSignIn().click();
 
-        loginPage.headerAuthentication().shouldHave(Condition.text("Authentication"));
+        loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
         loginPage.loginIntoAppWithUserParameters(Users.userName, "InvalidPassword1111");
 
-        loginPage.btnLoginSubmit().click();
+        loginPage.getBtnLoginSubmit().click();
 
         loginPage.checkAlertMessageThereIsOneError();
     }
@@ -58,13 +58,10 @@ public class Functional_LoginIntoPage extends TestBase {
         open("/index.php");
         homePage.getBtnSignIn().click();
 
-        loginPage.headerAuthentication().shouldHave(Condition.text("Authentication"));
+        loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
 
         loginPage.loginIntoAppWithUserParameters(Users.userName, Users.userPass);
 
-        myAccountPage.checkHeaderIsVisible();
+        myAccountPage.checkHeaderIsDisplayed();
     }
-
-
-
 }

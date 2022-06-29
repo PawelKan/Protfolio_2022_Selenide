@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import page_objects.HomePageObj;
 import page_objects.LoginPageObj;
 import page_objects.MyAccountPageObj;
+import utils.Urls;
 import utils.Users;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -18,7 +19,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
 
     @Test
     public void loginIntoPageWithEmptyUserCredentials(){
-        open("/index.php?controller=authentication&back=my-account");
+        open(Urls.LOGIN_PAGE);
         homePage.getBtnSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
@@ -28,7 +29,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
 
     @Test
     public void loginIntoPageWithInvalidUserName(){
-        open("/index.php?controller=authentication&back=my-account");
+        open(Urls.LOGIN_PAGE);
         homePage.getBtnSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
@@ -41,7 +42,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
 
     @Test
     public void loginIntoPageWithInvalidUserPassword() {
-        open("/index.php?controller=authentication&back=my-account");
+        open(Urls.LOGIN_PAGE);
         homePage.getBtnSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
@@ -55,7 +56,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
     @Test
     @SneakyThrows
     public void loginIntoPageWithValidUser(){
-        open("/index.php");
+        open(Urls.HOME_PAGE);
         homePage.getBtnSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));

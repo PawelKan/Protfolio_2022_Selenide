@@ -59,9 +59,9 @@ public class Functional_LoginIntoAppTests extends TestBase {
         homePage.getBtnSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
-
         loginPage.loginIntoAppWithUserParameters(Users.userName, Users.userPass);
 
         myAccountPage.checkHeaderIsDisplayed();
+        myAccountPage.checkMyAccountButtons();
     }
 }

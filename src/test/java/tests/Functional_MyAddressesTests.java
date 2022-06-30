@@ -33,7 +33,7 @@ public class Functional_MyAddressesTests extends TestBase {
     }
 
     @Test
-    public void editUserAddressInMyAcocunt(){
+    public void editUserAddressInMyAccount(){
         myAccount.getBtnMyAddresses().click();
         myAddresses.checkMyAddressesPageElements();
     }

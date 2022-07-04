@@ -9,4 +9,7 @@ public class HomePageObj {
 
     @Getter
     public SelenideElement btnSignIn = $(".login");
+
+    @Getter
+    public SelenideElement btnSingOut = $(".logout");
 }

@@ -1,4 +1,4 @@
-package utils;
+package utils.testData;
 
 public class Users {
     public static String userName = "fbn33265@bcaoo.com";

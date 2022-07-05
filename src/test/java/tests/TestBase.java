@@ -21,9 +21,4 @@ public class TestBase {
         Configuration.timeout = Long.parseLong(prop.get("timeout").toString());
         Configuration.holdBrowserOpen = Boolean.parseBoolean(prop.get("holdBrowserOpen").toString());
     }
-
-//    @BeforeTest
-//    public static void pageIsLoaded(){
-//
-//    }
 }

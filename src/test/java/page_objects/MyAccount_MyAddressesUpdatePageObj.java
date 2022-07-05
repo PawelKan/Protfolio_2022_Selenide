@@ -32,8 +32,6 @@ public class MyAccount_MyAddressesUpdatePageObj {
     public SelenideElement btnBackToYourAddress = $(".footer_links.clearfix .btn");
     private String translationBackToYourAddress = " Back to your addresses";
 
-
-
     public void checkMyAddressesUpdatePageElements(){
         headerYourAddress.shouldBe(Condition.visible).shouldHave(Condition.text(translationHeaderYourAddress));
         txtFirstName.shouldBe(Condition.visible);

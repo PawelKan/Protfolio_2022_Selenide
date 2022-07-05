@@ -40,15 +40,8 @@ public class Functional_MyAddressesTests extends TestBase {
         CookiesHelpers.loadCookies();
     }
 
-//    @Test
-//    public void tryToLoginWithCookies(){
-//        //CookiesHelpers.loadCookies(); // load session cookies
-//        open(Urls.HOME_PAGE);
-//    }
-
     @Test
-    public void editUserAddressInMyAccount(){
-        //CookiesHelpers.loadCookies(); // load session cookies
+    public void e2e_editUserAddressInMyAccount(){
         open(Urls.MY_ACCOUNT_PAGE);
         myAccount.getBtnMyAddresses().click();
         myAddresses.checkMyAddressesPageElements();

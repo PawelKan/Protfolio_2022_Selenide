@@ -7,7 +7,7 @@ import page_objects.HomePageObj;
 import page_objects.LoginPageObj;
 import page_objects.MyAccountPageObj;
 import utils.Urls;
-import utils.testData.Users;
+import models.Users;
 
 import static com.codeborne.selenide.Selenide.open;
 

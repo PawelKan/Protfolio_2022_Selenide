@@ -3,6 +3,7 @@ package page_objects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
+import models.ClientData;
 import utils.CommonActions;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -54,22 +55,19 @@ public class MyAccount_MyAddressesUpdatePageObj {
         btnBackToYourAddress.shouldBe(Condition.visible).shouldHave(Condition.text(translationBackToYourAddress));
     }
 
-    public void updateAddressForUser(String sFirstNameUpdate, String sLastName, String sCompany,
-                                     String sAddress, String sAddressLine2, String sCity, String sState, String sZipPostalCode,
-                                     String sCountry, String sHomePhone, String sMobilePhone, String sAdditionalInformation, String sAddressTitleAlias) {
-
-        CommonActions.clearAndType(txtFirstName, sFirstNameUpdate);
-        CommonActions.clearAndType(txtLastName, sLastName);
-        CommonActions.clearAndType(txtCompany, sCompany);
-        CommonActions.clearAndType(txtAddress, sAddress);
-        CommonActions.clearAndType(txtAddressLine2, sAddressLine2);
-        CommonActions.clearAndType(txtCity, sCity);
-        CommonActions.selectElementFromList(listState, sState);
-        CommonActions.clearAndType(txtZipPostalCode, sZipPostalCode);
-        CommonActions.selectElementFromList(listCountry, sCountry);
-        CommonActions.clearAndType(txtHomePhone, sHomePhone);
-        CommonActions.clearAndType(txtMobilePhone, sMobilePhone);
-        CommonActions.clearAndType(txtAdditionalInformation, sAdditionalInformation);
-        CommonActions.clearAndType(txtAddressTitleAlias, sAddressTitleAlias);
+    public void updateAddressForUser(ClientData clientData){
+        CommonActions.clearAndType(txtFirstName, clientData.getFirstNameUpdate());
+        CommonActions.clearAndType(txtLastName, clientData.getLastNameUpdate());
+        CommonActions.clearAndType(txtCompany, clientData.getCompanyUpdate());
+        CommonActions.clearAndType(txtAddress, clientData.getAddressUpdate());
+        CommonActions.clearAndType(txtAddressLine2, clientData.getAddressLine2Update());
+        CommonActions.clearAndType(txtCity, clientData.getCityUpdate());
+        CommonActions.selectElementFromList(listState, clientData.getStateUpdate());
+        CommonActions.clearAndType(txtZipPostalCode, clientData.getZipPostalCodeUpdate());
+        CommonActions.selectElementFromList(listCountry, clientData.getCountryUpdate());
+        CommonActions.clearAndType(txtHomePhone, clientData.getHomePhoneUpdate());
+        CommonActions.clearAndType(txtMobilePhone, clientData.getMobilePhoneUpdate());
+        CommonActions.clearAndType(txtAdditionalInformation, clientData.getAdditionalInformationUpdate());
+        CommonActions.clearAndType(txtAddressTitleAlias, clientData.getAddressTitleAliasUpdate());
     }
 }

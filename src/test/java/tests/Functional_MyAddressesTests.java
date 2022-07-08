@@ -1,14 +1,16 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.github.javafaker.Faker;
+import models.ClientData;
+import models.Users;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import page_objects.*;
 import utils.CookiesHelpers;
 import utils.Urls;
-import utils.testData.Users;
-import utils.testData.UsersData;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
 public class Functional_MyAddressesTests extends TestBase {
@@ -18,13 +20,14 @@ public class Functional_MyAddressesTests extends TestBase {
     MyAccountPageObj myAccount = new MyAccountPageObj();
     MyAccount_MyAddressesPageObj myAddresses = new MyAccount_MyAddressesPageObj();
     MyAccount_MyAddressesUpdatePageObj myAddressesUpdate = new MyAccount_MyAddressesUpdatePageObj();
+    Faker fakeData = new Faker();
 
     @BeforeTest
     public void loginIntoApp() {
         open(Urls.HOME_PAGE);
         homePage.getBtnSignIn().click();
 
-        loginPage.getHeaderAuthentication().shouldHave(Condition.text("Authentication"));
+        loginPage.getHeaderAuthentication().shouldHave(text("Authentication"));
         loginPage.loginIntoAppWithUserParameters(Users.userName, Users.userPass);
         homePage.getBtnSingOut().shouldBe(Condition.visible);
         myAccount.checkHeaderIsDisplayed();
@@ -40,6 +43,11 @@ public class Functional_MyAddressesTests extends TestBase {
 
     @Test
     public void e2e_editUserAddressInMyAccount() {
+        ClientData clientData = new ClientData();
+        String firstNameForTest = fakeData.name().firstName() + fakeData.name().firstName();
+        clientData.setFirstNameUpdate(firstNameForTest);
+
+
         CookiesHelpers.loadCookies();
         open(Urls.MY_ACCOUNT_PAGE);
         myAccount.getBtnMyAddresses().click();
@@ -50,21 +58,11 @@ public class Functional_MyAddressesTests extends TestBase {
         myAddressesUpdate.getBtnBackToYourAddress().click();
 
         myAddresses.btnUpdate.click();
-        myAddressesUpdate.updateAddressForUser(
-                UsersData.sFirstNameUpdate,
-                UsersData.sLastNameUpdate,
-                UsersData.sCompanyUpdate,
-                UsersData.sAddressUpdate,
-                UsersData.sAddressLine2Update,
-                UsersData.sCityUpdate,
-                UsersData.sStateUpdate,
-                UsersData.sZipPostalCodeUpdate,
-                UsersData.sCountryUpdate,
-                UsersData.sHomePhoneUpdate,
-                UsersData.sMobilePhoneUpdate,
-                UsersData.sAdditionalInformationUpdate,
-                UsersData.sAddressTitleAliasUpdate);
+
+        myAddressesUpdate.updateAddressForUser(clientData);
 
         myAddressesUpdate.getBtnSave().click();
+
+        myAddresses.getSectionDefaultAddressSection().shouldHave(text(firstNameForTest));
     }
 }

@@ -21,11 +21,11 @@ public class MyAccountPageObj {
     @Getter
     public final SelenideElement btnMyWishlists = $("#center_column > div > div:nth-child(2) > ul > li > a");
 
-    public void checkHeaderIsDisplayed(){
+    public void checkHeaderIsDisplayed() {
         getHeaderMyAccount().isDisplayed();
     }
 
-    public void checkMyAccountButtons(){
+    public void checkMyAccountButtons() {
         btnOrderHistoryAndDetails.shouldBe(Condition.visible).shouldHave(Condition.text("Order history and details"));
         btnMyCreditSlips.shouldBe(Condition.visible).shouldHave(Condition.text("My credit slips"));
         btnMyAddresses.shouldBe(Condition.visible).shouldHave(Condition.text("My addresses"));

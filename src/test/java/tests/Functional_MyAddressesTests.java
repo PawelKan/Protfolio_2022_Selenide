@@ -1,13 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import page_objects.*;
 import utils.CookiesHelpers;
 import utils.Urls;
 import utils.testData.Users;
+import utils.testData.UsersData;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -20,7 +20,7 @@ public class Functional_MyAddressesTests extends TestBase {
     MyAccount_MyAddressesUpdatePageObj myAddressesUpdate = new MyAccount_MyAddressesUpdatePageObj();
 
     @BeforeTest
-    public void loginIntoApp(){
+    public void loginIntoApp() {
         open(Urls.HOME_PAGE);
         homePage.getBtnSignIn().click();
 
@@ -31,26 +31,40 @@ public class Functional_MyAddressesTests extends TestBase {
         myAccount.checkMyAccountButtons();
 
         CookiesHelpers.storeCookies(); // Store cookies for further tests
-
-        homePage.btnSingOut.click();
     }
 
-    @BeforeClass
-    public void loadCookiesForLogin(){
-        CookiesHelpers.loadCookies();
-    }
+//    @BeforeClass
+//    public void loadCookiesForLogin(){
+//        CookiesHelpers.loadCookies();
+//    }
 
     @Test
-    public void e2e_editUserAddressInMyAccount(){
+    public void e2e_editUserAddressInMyAccount() {
+        CookiesHelpers.loadCookies();
         open(Urls.MY_ACCOUNT_PAGE);
         myAccount.getBtnMyAddresses().click();
         myAddresses.checkMyAddressesPageElements();
         myAddresses.btnUpdate.click();
 
         myAddressesUpdate.checkMyAddressesUpdatePageElements();
-        myAddressesUpdate.btnBackToYourAddress.click();
+        myAddressesUpdate.getBtnBackToYourAddress().click();
 
         myAddresses.btnUpdate.click();
-        myAddressesUpdate.btnSave.click();
+        myAddressesUpdate.updateAddressForUser(
+                UsersData.sFirstNameUpdate,
+                UsersData.sLastNameUpdate,
+                UsersData.sCompanyUpdate,
+                UsersData.sAddressUpdate,
+                UsersData.sAddressLine2Update,
+                UsersData.sCityUpdate,
+                UsersData.sStateUpdate,
+                UsersData.sZipPostalCodeUpdate,
+                UsersData.sCountryUpdate,
+                UsersData.sHomePhoneUpdate,
+                UsersData.sMobilePhoneUpdate,
+                UsersData.sAdditionalInformationUpdate,
+                UsersData.sAddressTitleAliasUpdate);
+
+        myAddressesUpdate.getBtnSave().click();
     }
 }

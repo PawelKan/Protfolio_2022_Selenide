@@ -20,7 +20,7 @@ public class MyAccount_MyAddressesPageObj {
     public SelenideElement btnBackToYourAccount = $("#center_column > ul > li:nth-child(1) > a > span");
     public SelenideElement btnHome = $("#center_column > ul > li:nth-child(2) > a > span");
 
-    public void checkMyAddressesPageElements(){
+    public void checkMyAddressesPageElements() {
         headerMyAddresses.shouldBe(Condition.visible);
         btnDefaultAddressSection.shouldBe(Condition.visible);
         btnUpdate.shouldBe(Condition.visible);
@@ -29,8 +29,6 @@ public class MyAccount_MyAddressesPageObj {
         btnBackToYourAccount.shouldBe(Condition.visible);
         btnHome.shouldBe(Condition.visible);
     }
-
-
 
 
 }

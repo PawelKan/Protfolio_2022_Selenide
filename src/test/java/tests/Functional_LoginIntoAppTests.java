@@ -18,7 +18,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
     MyAccountPageObj myAccountPage = new MyAccountPageObj();
 
     @Test
-    public void loginIntoPageWithEmptyUserCredentials(){
+    public void loginIntoPageWithEmptyUserCredentials() {
         open(Urls.LOGIN_PAGE);
         homePage.getBtnSignIn().click();
 
@@ -28,7 +28,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
     }
 
     @Test
-    public void loginIntoPageWithInvalidUserName(){
+    public void loginIntoPageWithInvalidUserName() {
         open(Urls.LOGIN_PAGE);
         homePage.getBtnSignIn().click();
 
@@ -55,7 +55,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
 
     @Test
     @SneakyThrows
-    public void loginIntoPageWithValidUser(){
+    public void loginIntoPageWithValidUser() {
         open(Urls.HOME_PAGE);
         homePage.getBtnSignIn().click();
 
@@ -64,5 +64,7 @@ public class Functional_LoginIntoAppTests extends TestBase {
 
         myAccountPage.checkHeaderIsDisplayed();
         myAccountPage.checkMyAccountButtons();
+
+        homePage.btnSingOut.click();
     }
 }

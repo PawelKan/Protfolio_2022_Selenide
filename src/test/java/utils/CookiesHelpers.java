@@ -9,12 +9,12 @@ public class CookiesHelpers {
 
     public static Set<Cookie> myCookieSet;
 
-    public static Set<Cookie> storeCookies(){
+    public static Set<Cookie> storeCookies() {
         return myCookieSet = WebDriverRunner.getWebDriver().manage().getCookies();
     }
 
-    public static void loadCookies(){
-        for (Cookie cookie : myCookieSet){
+    public static void loadCookies() {
+        for (Cookie cookie : myCookieSet) {
             WebDriverRunner.getWebDriver().manage().addCookie(cookie);
         }
     }

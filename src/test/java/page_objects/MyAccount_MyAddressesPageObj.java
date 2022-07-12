@@ -36,7 +36,6 @@ public class MyAccount_MyAddressesPageObj {
     }
 
     public void acceptDeletionAddressAlert(){
-        //Alert alert = switchTo().alert();
         switchTo().alert().accept();
     }
 

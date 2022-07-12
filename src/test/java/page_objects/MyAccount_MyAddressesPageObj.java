@@ -1,13 +1,17 @@
 package page_objects;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MyAccount_MyAddressesPageObj {
+
+    @Getter
+    private ElementsCollection listOfAddresses = $$("#center_column > div.addresses > div > div");
 
     @Getter
     public SelenideElement headerMyAddresses = $(".page-heading");
@@ -29,6 +33,11 @@ public class MyAccount_MyAddressesPageObj {
         btnAddNewAddress.shouldBe(Condition.visible);
         btnBackToYourAccount.shouldBe(Condition.visible);
         btnHome.shouldBe(Condition.visible);
+    }
+
+    public void acceptDeletionAddressAlert(){
+        //Alert alert = switchTo().alert();
+        switchTo().alert().accept();
     }
 
 

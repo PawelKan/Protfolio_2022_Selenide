@@ -1,19 +1,14 @@
 package page_objects;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import models.ClientData;
 import utils.CommonActions;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class MyAccount_MyAddressesUpdatePageObj {
-
-    @Getter
-    private ElementsCollection listOfAddresses = $$("#center_column > div.addresses > div > div");
 
     @Getter
     public SelenideElement headerYourAddress = $(".page-subheading");
@@ -41,10 +36,6 @@ public class MyAccount_MyAddressesUpdatePageObj {
     private SelenideElement btnBackToYourAddress = $(".footer_links.clearfix .btn");
     private String translationBackToYourAddress = " Back to your addresses";
 
-//    public SelenideElement getLastAddedAddressSection(){
-//        SelenideElement lastAddress;
-//        return new SelenideElement lastAddress = listOfAddresses.last();
-//    }
     public void checkMyAddressesUpdatePageElements() {
         headerYourAddress.shouldBe(Condition.visible).shouldHave(Condition.text(translationHeaderYourAddress));
         txtFirstName.shouldBe(Condition.visible);

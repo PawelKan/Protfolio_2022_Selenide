@@ -42,11 +42,37 @@ public class Functional_MyAddressesTests extends TestBase {
 //    }
 
     @Test
-    public void e2e_editUserAddressInMyAccount() {
+    public void e2e_addNewUserAddressInMyAccount() {
         ClientData clientData = new ClientData();
         String firstNameForTest = fakeData.name().firstName() + fakeData.name().firstName();
         clientData.setFirstNameUpdate(firstNameForTest);
 
+        String aliasAddressNameForTest = fakeData.address().streetName();
+        clientData.setAddressTitleAliasUpdate(aliasAddressNameForTest);
+
+        CookiesHelpers.loadCookies();
+        open(Urls.MY_ACCOUNT_PAGE);
+        myAccount.getBtnMyAddresses().click();
+        myAddresses.checkMyAddressesPageElements();
+        myAddresses.btnAddNewAddress.click();
+
+        myAddressesUpdate.checkMyAddressesUpdatePageElements();
+        myAddressesUpdate.getBtnBackToYourAddress().click();
+
+        myAddresses.btnAddNewAddress.click();
+
+        myAddressesUpdate.updateAddressForUser(clientData);
+
+        myAddressesUpdate.getBtnSave().click();
+
+        myAddressesUpdate.getListOfAddresses().last().shouldHave(text(firstNameForTest)); // check address was added correctly
+    }
+
+    @Test
+    public void e2e_editUserAddressInMyAccount() {
+        ClientData clientData = new ClientData();
+        String firstNameForTest = fakeData.name().firstName() + fakeData.name().firstName();
+        clientData.setFirstNameUpdate(firstNameForTest);
 
         CookiesHelpers.loadCookies();
         open(Urls.MY_ACCOUNT_PAGE);
@@ -65,4 +91,6 @@ public class Functional_MyAddressesTests extends TestBase {
 
         myAddresses.getSectionDefaultAddressSection().shouldHave(text(firstNameForTest));
     }
+
+
 }

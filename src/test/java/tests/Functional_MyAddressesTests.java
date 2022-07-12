@@ -81,10 +81,6 @@ public class Functional_MyAddressesTests extends TestBase {
         myAddresses.checkMyAddressesPageElements();
         myAddresses.btnUpdate.click();
 
-        //myAddressesUpdate.checkMyAddressesUpdatePageElements();
-        //myAddressesUpdate.getBtnBackToYourAddress().click();
-        //myAddresses.btnUpdate.click();
-
         myAddressesUpdate.updateAddressForUser(clientData);
         myAddressesUpdate.getBtnSave().click();
         myAddresses.getSectionDefaultAddressSection().shouldHave(text(firstNameForTest));
@@ -97,7 +93,6 @@ public class Functional_MyAddressesTests extends TestBase {
         myAccount.getBtnMyAddresses().click();
 
         if (myAddresses.getListOfAddresses().size() > 1) {
-            //myAddresses.getListOfAddresses().last().find("ul").findAll("li").last().find("a[title=\"Delete\"]").click();
             String addressText = myAddresses.getListOfAddresses().last().getText();
 
             myAddresses.getListOfAddresses().last().find("li.address_update > a:nth-child(2)[title=\"Delete\"]").click();

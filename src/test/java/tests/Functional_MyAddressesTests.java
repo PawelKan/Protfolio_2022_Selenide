@@ -15,9 +15,9 @@ import utils.Urls;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Functional_MyAddressesTests extends TestBase {
+public class Functional_MyAddressesTests extends BaseTest {
 
-    HomePageObj homePage = new HomePageObj();
+    PageHeaderObj pageHeader = new PageHeaderObj();
     LoginPageObj loginPage = new LoginPageObj();
     MyAccountPageObj myAccount = new MyAccountPageObj();
     MyAccount_MyAddressesPageObj myAddresses = new MyAccount_MyAddressesPageObj();
@@ -28,11 +28,11 @@ public class Functional_MyAddressesTests extends TestBase {
     @BeforeTest
     public void loginIntoApp() {
         open(Urls.HOME_PAGE);
-        homePage.getBtnSignIn().click();
+        pageHeader.getBtnHeaderSignIn().click();
 
         loginPage.getHeaderAuthentication().shouldHave(text("Authentication"));
         loginPage.loginIntoAppWithUserParameters(Users.userName, Users.userPass);
-        homePage.getBtnSingOut().shouldBe(Condition.visible);
+        pageHeader.getBtnHeaderSingOut().shouldBe(Condition.visible);
         myAccount.checkHeaderIsDisplayed();
         myAccount.checkMyAccountButtons();
 

@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeSuite;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class TestBase {
+public class BaseTest {
 
     @BeforeSuite
     @SneakyThrows
